@@ -9,11 +9,13 @@
 <script>
 import { mapState } from 'vuex'
 import SiteNav from '@/components/SiteNav'
+//import LineChart from '@/components/LineChart'
 //import moment from 'moment'
 
 export default {
   components: {
-    SiteNav
+    SiteNav,
+    //DataTracker
   },
   computed: {
     ...mapState(['userProfile']),
@@ -25,7 +27,7 @@ export default {
     return{
       chartOptions: {
         responsive: true,
-        maintainAspectRation: falso
+        maintainAspectRatio: false
       }
     }
   }

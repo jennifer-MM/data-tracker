@@ -5,6 +5,8 @@ import { auth } from '../firebase'
 
 Vue.use(VueRouter)
 
+
+
   const routes = [
   {
     path: '/',

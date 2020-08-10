@@ -2,9 +2,22 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as fb from '../firebase'
 import router from '../router/index'
+import { post } from 'jquery'
 
 Vue.use(Vuex)
+ // realtime firebase connection
+    fb.dataCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
+      let chartArray = []
 
+      snapshot.forEach(doc => {
+        let chart = doc.data ()
+        chart.id = doc.id
+
+        chartArray.push(chart)
+      })
+
+      store.commit('setChart', chartArray)
+})
 
 const store = new Vuex.Store({
   state: {
@@ -68,7 +81,7 @@ const store = new Vuex.Store({
   },
 
     //enter data for graph
-    async createGraph({ state, commit }, post) {
+    async createChart({ state, commit }, data) {
       await fb.dataCollection.add({
         createdOn: new Date(),
         userId: fb.auth.currentUser.uid,
@@ -76,10 +89,7 @@ const store = new Vuex.Store({
       })
     },
 
-    // realtime firebase connection
-    //fb.dataCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
-      // logic goes here
-//}),
+   
     async updateProfile({ dispatch }, user) {
       const userID = fb.auth.currentUser.uid
       //update user object
@@ -90,6 +100,15 @@ const store = new Vuex.Store({
       dispatch('fetchUserProfile', { uid: userID })
     }
 })
+
+    //async trackChart ({ state, commit }, chart) {
+      //await fb.dataCollection.add({
+        //createdOn: new Date(),
+        //content: chart.data,
+        //userID:fb.auth.currentUser.uid
+      //})
+
+    //}
 export default store
 
     

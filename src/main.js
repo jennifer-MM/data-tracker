@@ -6,6 +6,7 @@ import { auth } from './firebase'
 import "bootstrap/dist/css/bootstrap.css"
 import './assets/app.scss'
 
+
 Vue.config.productionTip = false
 
 let app
