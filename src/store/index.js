@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as fb from '../firebase'
 import router from '../router/index'
-import { post } from 'jquery'
+//import { data } from 'jquery'
+export default store
+
 
 Vue.use(Vuex)
  // realtime firebase connection
-    fb.dataCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
+    fb.chartCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
       let chartArray = []
 
       snapshot.forEach(doc => {
@@ -82,42 +84,32 @@ const store = new Vuex.Store({
 
     //enter data for graph
     async createChart({ state, commit }, data) {
-      await fb.dataCollection.add({
+      await fb.chartCollection.add({
         createdOn: new Date(),
+        content: chart.content,
         userId: fb.auth.currentUser.uid,
         userName: state.userProfile.name
       })
     },
 
    
+   
     async updateProfile({ dispatch }, user) {
-      const userID = fb.auth.currentUser.uid
+      const userId = fb.auth.currentUser.uid
       //update user object
-      const userRef = await fb.usersCollection.doc(userID).update({
+      const userRef = await fb.usersCollection.doc(userId).update({
         name: user.name
       })
 
-      dispatch('fetchUserProfile', { uid: userID })
-    }
+      dispatch('fetchUserProfile', { uid: userId })
+    
+
+    // update all posts by user
+    const postDocs = await fb.postsCollection.where('userId', '==', userId).get()
+    postDocs.forEach(doc => {
+    fb.chartCollection.doc(doc.id).update({
+    userName: user.name
+    })
+  })
+}
 })
-
-    //async trackChart ({ state, commit }, chart) {
-      //await fb.dataCollection.add({
-        //createdOn: new Date(),
-        //content: chart.data,
-        //userID:fb.auth.currentUser.uid
-      //})
-
-    //}
-export default store
-
-    
-
-    
-     
-       
-    
-    
-  
-
-

@@ -1,4 +1,5 @@
-publicPath: '',
-    //build for docs folder to enable gh-pages hosting
-    outputDir: './docs/',
+module.exports = {
+    publicPath: '',
+    outputDir: 'docs',
     assetsDir: 'assets'
+}
