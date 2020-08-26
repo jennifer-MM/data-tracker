@@ -7,7 +7,7 @@
                 <div class="track-data">
                     <p>Enter your blood work information</p>
                     <form @submit.prevent>
-                        <textarea v-model.trim="post.data"></textarea>
+                        <textarea v-model.trim="post.chart"></textarea>
                         <button @click="trackData()" :disabled="post.data ===''" class="button">Track</button>
                     </form>
                     
@@ -31,7 +31,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import Datatracker from '@/components/DataTracker'
+//import LineChart from '@/components/LineChart'
 import moment from 'moment'
 
 export default {
@@ -46,10 +46,22 @@ export default {
         ...mapState(['userProfile'])
     },
     methods: {
-        trackData() {
-            this.$store.dispatch('trackData', { data: this.post.data })
-            this.post.data = ''
+        createChart() {
+            this.$store.dispatch('createChart', { content: this.chart.content })
+            this.chart.content = ''
+        },
+    filters: {
+        formateDate(val) {
+            if (!val) { return '-' }
+
+            let date = val.toDate()
+            return moment(date).fromNow()
+        },
+        trimLength(val) {
+            if (val.length < 200) { return val }
+            return `${val.substring(0, 200)}...`
         }
+    }
     }
   
 }

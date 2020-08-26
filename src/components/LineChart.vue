@@ -1,14 +1,16 @@
 
 <template>
 <div class="tracker">
-    <button @click="addData()" class="button">add data</button>
+    <button @click="addChart()" class="button">add data</button>
 
 
 </div>
 </template>
 
 <script>
-//import { line, mixins } from 'vue-chartjs'
+import Chart from 'chart.js';
+import 'chartjs-adapter-moment';
+import { line, mixins } from 'vue-chartjs'
 
 export default {
    // extend: Line,

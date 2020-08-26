@@ -13,6 +13,7 @@ const firebaseConfig = {
     messagingSenderId: "672270545754",
     appId: "1:672270545754:web:535bd57500b96e214d3963",
   };
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
@@ -22,12 +23,12 @@ const firebaseConfig = {
 
   //collection references
   const usersCollection = db.collection('users')
-  const dataCollection =db.collection('data')
+  const chartCollection =db.collection('chart')
   
   //export utils/refs
   export {
       db,
       auth,
       usersCollection,
-      dataCollection
+      chartCollection
   }

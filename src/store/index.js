@@ -23,7 +23,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    userProfile:{}
+    userProfile:{},
+    chart: []
   },
 
   mutations: {
@@ -32,8 +33,13 @@ const store = new Vuex.Store({
     },
     setPerformingRequest(state, val) {
       state.performingRequest = val
+    },
+
+    setChart(state, val) {
+      state.chart = val
     }
   },
+    
 
   actions: {
     async login({ dispatch }, form) {
@@ -83,7 +89,8 @@ const store = new Vuex.Store({
   },
 
     //enter data for graph
-    async createChart({ state, commit }, data) {
+    async createChart({ state }, chart) {
+      // create chart in firebase
       await fb.chartCollection.add({
         createdOn: new Date(),
         content: chart.content,
@@ -91,25 +98,5 @@ const store = new Vuex.Store({
         userName: state.userProfile.name
       })
     },
-
-   
-   
-    async updateProfile({ dispatch }, user) {
-      const userId = fb.auth.currentUser.uid
-      //update user object
-      const userRef = await fb.usersCollection.doc(userId).update({
-        name: user.name
-      })
-
-      dispatch('fetchUserProfile', { uid: userId })
-    
-
-    // update all posts by user
-    const postDocs = await fb.postsCollection.where('userId', '==', userId).get()
-    postDocs.forEach(doc => {
-    fb.chartCollection.doc(doc.id).update({
-    userName: user.name
-    })
   })
-}
-})
+  

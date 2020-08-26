@@ -15,7 +15,7 @@ import SiteNav from '@/components/SiteNav'
 export default {
   components: {
     SiteNav,
-    //DataTracker
+
   },
   computed: {
     ...mapState(['userProfile']),
