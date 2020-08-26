@@ -4,11 +4,11 @@
         <div class="col1">
             <div class="profile">
                 <h5>{{ userProfile.name }}</h5>
-                <div class="track-data">
+                <div class="create-chart">
                     <p>Enter your blood work information</p>
                     <form @submit.prevent>
-                        <textarea v-model.trim="post.chart"></textarea>
-                        <button @click="trackData()" :disabled="post.data ===''" class="button">Track</button>
+                        <textarea v-model.trim="chart.content"></textarea>
+                        <button @click="createChart()" :disabled="post.content ===''" class="button">Track</button>
                     </form>
                     
                 </div>
