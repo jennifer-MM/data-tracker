@@ -8,23 +8,23 @@ import router from '../router/index'
 
 Vue.use(Vuex)
  // realtime firebase connection
-    fb.chartCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
-      let chartArray = []
+   // fb.chartCollection.orderBy('createdOn', 'desc').onSnapshot(snapshot => {
+     // let chartArray = []
 
-      snapshot.forEach(doc => {
-        let chart = doc.data ()
-        chart.id = doc.id
+      //snapshot.forEach(doc => {
+        //let chart = doc.data ()
+        //chart.id = doc.id
 
-        chartArray.push(chart)
-      })
+        //chartArray.push(chart)
+     // })
 
-      store.commit('setChart', chartArray)
-})
+      //store.commit('setChart', chartArray)
+//})
 
 const store = new Vuex.Store({
   state: {
     userProfile:{},
-    chart: []
+   // chart: []
   },
 
   mutations: {
@@ -35,9 +35,9 @@ const store = new Vuex.Store({
       state.performingRequest = val
     },
 
-    setChart(state, val) {
-      state.chart = val
-    }
+   // setChart(state, val) {
+     // state.chart = val
+    //}
   },
     
 
@@ -89,15 +89,15 @@ const store = new Vuex.Store({
   },
 
     //enter data for graph
-    async createChart({ state }, chart) {
+   // async createChart({ state }, chart) {
       // create chart in firebase
-      await fb.chartCollection.add({
-        createdOn: new Date(),
-        content: chart.content,
-        userId: fb.auth.currentUser.uid,
-        userName: state.userProfile.name
-      })
-    },
+     // await fb.chartCollection.add({
+       // createdOn: new Date(),
+      //  content: chart.content,
+        //userId: fb.auth.currentUser.uid,
+        //userName: state.userProfile.name
+      //})
+    //},
   })
-  
+
   export default store

@@ -1,4 +1,4 @@
-
+<!--
 <template>
 <div class="tracker">
     <button @click="createChart()" class="button">add data</button>
@@ -50,4 +50,4 @@ export default {
      // })
 //}
 
-</script>
+</script> -->

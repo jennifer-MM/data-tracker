@@ -24,23 +24,7 @@ export default {
       return Object.keys(this.userProfile).length > 1
     }
   },
-  data () {
-    return{
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    }
-  },
 
-  //methods: {
-    //createChart(chartId, chartData){
-      //const ctx = document.getElementByID(chartId),
-      //const myChart = new Chart(ctx, {
-        //type: chartData.type,
-        //data: chartData.data,
-        //options: chartData.options,
-      //});
     }
   
 
