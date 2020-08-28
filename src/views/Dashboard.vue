@@ -32,13 +32,13 @@
 <script>
 import { mapState } from 'vuex'
 //import LineChart from '@/components/LineChart'
-import moment from 'moment'
+//import moment from 'moment'
 
 export default {
     data(){
         return {
         post: {
-            data: ''
+            chart: ''
         }
        }
     },
@@ -47,24 +47,24 @@ export default {
     },
     methods: {
         createChart() {
-            this.$store.dispatch('createChart', { content: this.chart.content })
+            this.$store.dispatch('createChart', { data: this.chart.content })
             this.chart.content = ''
         },
-    filters: {
-        formateDate(val) {
-            if (!val) { return '-' }
+   // filters: {
+     //   formatDate(val) {
+       //     if (!val) { return '-' }
 
-            let date = val.toDate()
-            return moment(date).fromNow()
-        },
-        trimLength(val) {
-            if (val.length < 200) { return val }
-            return `${val.substring(0, 200)}...`
-        }
+         //   let date = val.toDate()
+           // return moment(date).fromNow()
+        //},
+        //trimLength(val) {
+          //  if (val.length < 200) { return val }
+            //return `${val.substring(0, 200)}...`
+        //}
     }
     }
   
-}
+//}
 </script>
 
 <style lang="scss" scoped>

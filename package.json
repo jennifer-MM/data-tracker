@@ -16,6 +16,7 @@
     "jquery": "^3.5.1",
     "moment": "^2.27.0",
     "popper.js": "^1.16.1",
+    "v-chart-plugin": "^1.0.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-router": "^3.2.0",

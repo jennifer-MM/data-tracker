@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import * as fb from '../firebase'
 import router from '../router/index'
 //import { data } from 'jquery'
-export default store
+
 
 
 Vue.use(Vuex)
@@ -100,3 +100,4 @@ const store = new Vuex.Store({
     },
   })
   
+  export default store

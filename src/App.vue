@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <SiteNav v-if="showNav"></SiteNav>
+    <canvas id="LineChart"></canvas>
     
     <router-view/>
   </div>
@@ -15,6 +16,7 @@ import SiteNav from '@/components/SiteNav'
 export default {
   components: {
     SiteNav
+   
   },
   computed: {
     ...mapState(['userProfile']),
@@ -29,6 +31,17 @@ export default {
         maintainAspectRatio: false
       }
     }
-  }
-}
+  },
+
+  //methods: {
+    //createChart(chartId, chartData){
+      //const ctx = document.getElementByID(chartId),
+      //const myChart = new Chart(ctx, {
+        //type: chartData.type,
+        //data: chartData.data,
+        //options: chartData.options,
+      //});
+    }
+  
+
 </script>
